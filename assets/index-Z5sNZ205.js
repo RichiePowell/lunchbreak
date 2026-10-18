@@ -290,12 +290,12 @@ var e=Object.defineProperty,t=(t,n)=>{let r={};for(var i in t)e(r,i,{get:t[i],en
       ${ji.map(e=>{let t=e.daily?.(),n=t?`<p class="game-daily ${t.played?`done`:``}">${t.played?t.best?`Today's challenge done: ${S(t.best)}`:`Played today`:`Today's challenge is waiting`}</p>`:``;return`
         <a class="game-card" href="#/${e.id}" data-game="${e.id}">
           <canvas class="game-preview" aria-hidden="true"></canvas>
-          <div class="game-body">
+          <div class="game-head">
             <h2>${S(e.title)}</h2>
             <p>${S(e.tagline)}</p>
-            <ul class="game-bests">${e.summary().map(e=>`<li>${S(e)}</li>`).join(``)}</ul>
-            ${n}
           </div>
+          <ul class="game-bests">${e.summary().map(e=>`<li>${S(e)}</li>`).join(``)}</ul>
+          ${n}
           <span class="play-pill">Play</span>
         </a>`}).join(``)}
     </section>`,e.appendChild(n);let i=new Map,a=new ResizeObserver(e=>{for(let t of e){let e=t.target,n=`${e.clientWidth}x${e.clientHeight}@${window.devicePixelRatio}`;e.clientWidth&&i.get(e)!==n&&(i.set(e,n),ji.find(t=>t.id===e.dataset.preview)?.preview(e))}});return n.querySelectorAll(`[data-game]`).forEach(e=>{let n=ji.find(t=>t.id===e.dataset.game),r=e.querySelector(`canvas`);r.dataset.preview=n.id,a.observe(r),e.addEventListener(`click`,e=>{e.preventDefault(),t(n.id)})}),n.querySelector(`.game-card`)?.focus({preventScroll:!0}),()=>{a.disconnect(),n.remove()}}var Pi=document.getElementById(`app`),Fi=null;function Ii(){Fi?.(),Fi=null;let e=location.hash.replace(/^#\/?/,``),t=ji.find(t=>t.id===e);document.body.dataset.view=t?`game`:`home`,t?(document.title=t.title,Fi=t.mount(Pi,{exit:()=>Li(``)})):(document.title=`Lunchbreak`,Fi=Ni(Pi,e=>Li(e)))}function Li(e){let t=e?`#/${e}`:`#/`;location.hash===t?Ii():location.hash=t}Ce(),new URLSearchParams(location.search).has(`debug`)&&(window.__audio=()=>E.music?.isRunning??!1),window.addEventListener(`hashchange`,Ii),Ii(),`serviceWorker`in navigator&&window.addEventListener(`load`,()=>{navigator.serviceWorker.register(`./sw.js`).catch(()=>{})});
