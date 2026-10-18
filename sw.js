@@ -1,7 +1,7 @@
 // Service worker: precaches the built app so the arcade works offline.
 // The file list and version below are injected at build time (see vite.config.ts).
-const PRECACHE = ["./","./index.html","./assets/index-CAEIMhPb.js","./assets/figtree-latin-ext-wght-normal-DCwSJGxG.woff2","./assets/figtree-latin-wght-normal-D_ZTVpCC.woff2","./assets/index-kQme34cz.css","./assets/unbounded-cyrillic-wght-normal-C627f1f8.woff2","./assets/unbounded-latin-ext-wght-normal-D6H-S6MW.woff2","./assets/unbounded-latin-wght-normal-D5afBTBx.woff2","./assets/unbounded-vietnamese-wght-normal-rat7GD3o.woff2","./icons/apple-touch-icon.png","./icons/icon-192.png","./icons/icon-512.png","./icons/icon-maskable-512.png","./icons/icon.svg","./manifest.webmanifest","./robots.txt"];
-const CACHE = "lunchbreak-92a40cf720";
+const PRECACHE = ["./","./index.html","./assets/index-CvaRQPRt.js","./assets/figtree-latin-ext-wght-normal-DCwSJGxG.woff2","./assets/figtree-latin-wght-normal-D_ZTVpCC.woff2","./assets/index-DjhaiZw2.css","./assets/unbounded-cyrillic-wght-normal-C627f1f8.woff2","./assets/unbounded-latin-ext-wght-normal-D6H-S6MW.woff2","./assets/unbounded-latin-wght-normal-D5afBTBx.woff2","./assets/unbounded-vietnamese-wght-normal-rat7GD3o.woff2","./icons/apple-touch-icon.png","./icons/icon-192.png","./icons/icon-512.png","./icons/icon-maskable-512.png","./icons/icon.svg","./manifest.webmanifest","./robots.txt"];
+const CACHE = "lunchbreak-4655397e19";
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(PRECACHE)).then(() => self.skipWaiting()));
