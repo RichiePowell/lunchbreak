@@ -1,4 +1,4 @@
-import{Ct as e,ht as t,mt as n,t as r,yt as i}from"./registry-BrJNY1yS.js";function a(){let t=e();if(t.days===0)return{title:`Start a streak`,sub:`Play any game's challenge today.`,hot:!1};let n=`${t.days}-day streak`;return t.playedToday?{title:n,sub:`Today's done. Come back tomorrow to keep it going.`,hot:!0}:{title:n,sub:`Play any game's challenge today to keep it going.`,hot:!0}}function o(e,t){let n=document.createElement(`main`);n.className=`home`;let o=a();n.innerHTML=`
+import{Ct as e,ht as t,mt as n,t as r,yt as i}from"./registry-WLbK2Ex8.js";function a(){let t=e();if(t.days===0)return{title:`Start a streak`,sub:`Play any game's challenge today.`,hot:!1};let n=`${t.days}-day streak`;return t.playedToday?{title:n,sub:`Today's done. Come back tomorrow to keep it going.`,hot:!0}:{title:n,sub:`Play any game's challenge today to keep it going.`,hot:!0}}function o(e,t){let n=document.createElement(`main`);n.className=`home`;let o=a();n.innerHTML=`
     <header class="home-head">
       <h1 class="home-mark" aria-label="Lunchbreak">
         <span class="mark-block"></span><span class="mark-block"></span><span class="mark-block"></span>
