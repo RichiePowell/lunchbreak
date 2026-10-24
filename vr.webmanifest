@@ -3,15 +3,28 @@
   "short_name": "Lunchbreak VR",
   "description": "The Lunchbreak arcade, all around you.",
   "id": "./vr.html",
-  "start_url": "./vr.html",
-  "scope": "./",
+  "start_url": "./vr.html?app=1",
+  "scope": "./vr.html",
   "display": "standalone",
   "orientation": "any",
   "background_color": "#05040a",
   "theme_color": "#05040a",
   "icons": [
-    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }
