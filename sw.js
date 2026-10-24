@@ -1,7 +1,7 @@
 // Service worker: precaches the built app so the arcade works offline.
 // The file list and version below are injected at build time (see vite.config.ts).
-const PRECACHE = ["./","./index.html","./assets/index-CvN3FNJe.js","./assets/figtree-latin-ext-wght-normal-DCwSJGxG.woff2","./assets/figtree-latin-wght-normal-D_ZTVpCC.woff2","./assets/index-BXo3TIE1.css","./assets/unbounded-cyrillic-wght-normal-C627f1f8.woff2","./assets/unbounded-latin-ext-wght-normal-D6H-S6MW.woff2","./assets/unbounded-latin-wght-normal-D5afBTBx.woff2","./assets/unbounded-vietnamese-wght-normal-rat7GD3o.woff2","./icons/apple-touch-icon.png","./icons/icon-192.png","./icons/icon-512.png","./icons/icon-maskable-512.png","./icons/icon.svg","./manifest.webmanifest","./robots.txt","./words/LICENSE.txt","./words/quill-words.v1.bin"];
-const CACHE = "lunchbreak-761c795de2";
+const PRECACHE = ["./","./index.html","./assets/main-B8YDYRpl.js","./assets/registry-BfmKnJvM.js","./assets/figtree-latin-ext-wght-normal-DCwSJGxG.woff2","./assets/figtree-latin-wght-normal-D_ZTVpCC.woff2","./assets/main-CU1V7Mxv.css","./assets/registry-CEw8fi06.css","./assets/unbounded-cyrillic-wght-normal-C627f1f8.woff2","./assets/unbounded-latin-ext-wght-normal-D6H-S6MW.woff2","./assets/unbounded-latin-wght-normal-D5afBTBx.woff2","./assets/unbounded-vietnamese-wght-normal-rat7GD3o.woff2","./icons/apple-touch-icon.png","./icons/icon-192.png","./icons/icon-512.png","./icons/icon-maskable-512.png","./icons/icon.svg","./manifest.webmanifest","./robots.txt","./vr.webmanifest"];
+const CACHE = "lunchbreak-0cff882520";
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(PRECACHE)).then(() => self.skipWaiting()));
@@ -22,7 +22,20 @@ self.addEventListener('fetch', (event) => {
 
   // Pages: network first so updates arrive, cached shell when offline.
   if (request.mode === 'navigate') {
-    event.respondWith(fetch(request).catch(() => caches.match('./index.html', { ignoreSearch: true, ignoreVary: true })));
+    // Remember each page as it loads (the VR page isn't precached), and fall back to it offline.
+    event.respondWith(
+      fetch(request)
+        .then((res) => {
+          if (res.ok) {
+            const copy = res.clone();
+            caches.open(CACHE).then((cache) => cache.put(request, copy));
+          }
+          return res;
+        })
+        .catch(() =>
+          caches.match(request, { ignoreSearch: true, ignoreVary: true })
+            .then((hit) => hit || caches.match('./index.html', { ignoreSearch: true, ignoreVary: true }))),
+    );
     return;
   }
 
