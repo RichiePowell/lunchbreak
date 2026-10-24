@@ -4259,8 +4259,6 @@ void main() {
         vec3 col = vec3(0.0);
         ${t}
         col += col * uFlare * 0.35;
-        // Dither so slow gradients don't band in 8-bit.
-        col += (fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233))) * 43758.5453) - 0.5) / 160.0;
         float a = uMix * revealMask(vWorld);
         gl_FragColor = vec4(col, a);
         #include <colorspace_fragment>
